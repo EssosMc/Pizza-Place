@@ -1,5 +1,1 @@
-First Java project from the skills I currently have.
-
-Aims:
-- Functional order system 
-- Correct price calculator 
+First basic Java project involving a basic Pizza Parlour order system.
