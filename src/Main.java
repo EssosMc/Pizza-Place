@@ -1,121 +1,115 @@
-import java.util.Arrays;
+//Code written by EssosMc
+//Project Pizza Parlour
+
+import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.IOException;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
-        int a1 = 5;
-        int a2 = 4;
-        int a3 = 8;
-        int a4 = 0; //Pizza Price choice
-        int a5 = 2;
-        int a7 = 0; //Drink Price choice
-        String a8 = " "; //Pizza choice
-        String a9 = " "; //Drink choice
+    public static void main(String[] args) throws InterruptedException, IOException {
 
-        Scanner a = new Scanner(System.in);
-        System.out.println("Welcome to Essos's Pizza Parlour can I take your order?");
-        System.out.println("(Yes/No)");
-        String userAnswer = a.nextLine();
-        String b = userAnswer.toLowerCase();
+        ArrayList<String> PizzaMenu = new ArrayList<String>();
+        PizzaMenu.add("Pepperoni - £5");
+        PizzaMenu.add("Ham - £10");
+        PizzaMenu.add("Margherita - £7");
+        PizzaMenu.add("Sausage - £11");
 
-        String[][] Pizza;
-        Pizza = new String[3][2];
-        Pizza[0][0] = "pepperoni:";
-        Pizza[0][1] = "£5";
-        Pizza[1][0] = "ham:";
-        Pizza[1][1] = "£4";
-        Pizza[2][0] = "vegetable:";
-        Pizza[2][1] = "£8";
+        ArrayList<String> DrinkMenu = new ArrayList<String>();
+        DrinkMenu.add("Water - £0");
+        DrinkMenu.add("Coke - £2");
+        DrinkMenu.add("Fanta - £3");
 
-        String[][] Drink;
-        Drink = new String[2][2];
-        Drink[0][0] = "coke:";
-        Drink[0][1] = "£2";
-        Drink[1][0] = "fanta:";
-        Drink[1][1] = "£2";
+        ArrayList<Integer> Prices = new ArrayList<Integer>();
+        Prices.add(5);
+        Prices.add(10);
+        Prices.add(7);
+        Prices.add(11);
+        Prices.add(0);
+        Prices.add(2);
+        Prices.add(3);
 
-        if (b.equals("yes")) {
-            System.out.println("Pizza Menu");
-            System.out.println(Arrays.deepToString(Pizza));
-            System.out.println("Drink Menu");
-            System.out.println(Arrays.deepToString(Drink));
+        int[] TotalPrice = {0, 0};
+
+        Scanner user = new Scanner(System.in);
+        System.out.println("Welcome to the Essos Pizza Parlour, would you folks like some menu's?");
+        String menu = user.nextLine();
+        if (menu.equalsIgnoreCase("yes")) {
+            System.out.println(PizzaMenu);
+            System.out.println(DrinkMenu);
         } else {
-            System.out.println("No worries feel free to ask later");
+            System.out.println("No worries we will ask later");
             System.exit(0);
         }
 
-        Thread.sleep(2000);
-        Scanner c = new Scanner(System.in);
-        System.out.println("What Pizza would you like to order");
-        System.out.println("(Pepperoni/Ham/Vegetable)");
-        String userPizzaOrder = c.nextLine();
-        String d = userPizzaOrder.toLowerCase();
-
-        int e;
-        if (d.equals("pepperoni")) {
-            System.out.println("Pepperoni pizza has been ordered");
-            e = a1;
-            System.out.println("Total order price so far: £" + e);
-            a4 += 5;
-            a8 = "Pepperoni";
-        }
-        if (d.equals("ham")) {
-            System.out.println("Ham pizza has been ordered");
-            e = a2;
-            System.out.println("Total order price so far: £" + e);
-            a4 += 4;
-            a8 = "Ham";
-        }
-        if (d.equals("vegetable")) {
-            System.out.println("Vegetable pizza has been ordered");
-            e = a3;
-            System.out.println("Total order price so far: £" + e);
-            a4 += 8;
-            a8 = "Vegetable";
-        }
-
-        Thread.sleep(2000);
-        Scanner f = new Scanner(System.in);
-        System.out.println("Would you like a drink with that?");
-        System.out.println("(Yes/No)");
-        String userDrinkQuestion = f.nextLine();
-        String g = userDrinkQuestion.toLowerCase();
-
-        if (g.equals("yes")) {
-            System.out.println(Arrays.deepToString(Drink));
-            System.out.println("Our drinks menu, our system will take your order in 2 seconds");
-        } else {
-            System.out.println("No problem");
-            System.out.println("Your total for this order is £" + a4);
-        }
-
-        Thread.sleep(2000);
-        Scanner h = new Scanner(System.in);
-        System.out.println("What drink would you like?");
-        System.out.println("(Fanta/Coke)");
-        String userDrinkOrder = h.nextLine();
-        String i = userDrinkOrder.toLowerCase();
-
-        int j;
-        if (i.equals("coke")) {
-            System.out.println("Coke drink has been ordered");
-            j = a5;
-            System.out.println("Your total drink order is £" + j);
-            a7 += 2;
-            a9 = "Coke";
-        } if (i.equals("fanta")) {
-            System.out.println("Fanta drink has been ordered");
-            j = a5;
-            System.out.println("Your total drink order is £" + j);
-            a7 += 2;
-            a9 = "Fanta";
-        }
-        int a10 = a7 + a4;
         Thread.sleep(1000);
-        System.out.println("£" + a4 + " for the " + a8);
-        System.out.println("£" + a7 + " for the " + a9);
-        System.out.println("Your total order for today is £" + a10 + " ");
-        System.out.println("Thank you for order at Essos's Pizza Parlour we hope to see you again soon!!");
-    }
-}
+        System.out.println("Okay folks can we take your order from the PizzaMenu?");
+        String PizzaOrder = user.nextLine();
+        String A = PizzaOrder;
+        if (A.equalsIgnoreCase("Pepperoni")) {
+            System.out.println(A + " " + "ordered!");
+            System.out.println("Your total order price is " + Prices.get(0));
+            TotalPrice[0] = Prices.get(0);
+        }
+        if (A.equalsIgnoreCase("Ham")) {
+            System.out.println(A + " " + "ordered!");
+            System.out.println("Your total order price is " + Prices.get(1));
+            TotalPrice[0] = Prices.get(1);
+        }
+        if (A.equalsIgnoreCase("Margherita")) {
+            System.out.println(A + " " + "ordered!");
+            System.out.println("Your total order price is " + Prices.get(2));
+            TotalPrice[0] = Prices.get(2);
+        }
+        if (A.equalsIgnoreCase("Sausage")) {
+            System.out.println(A + " " + "ordered!");
+            System.out.println("Your total order price is " + Prices.get(3));
+            TotalPrice[0] = Prices.get(3);
+        }
+
+        Thread.sleep(1000);
+        System.out.println("Okay folks can we take your order from the DrinkMenu?");
+        String DrinkOrder = user.nextLine();
+        String B = DrinkOrder;
+        if (B.equalsIgnoreCase("Water")) {
+            System.out.println(B + " " + "ordered!");
+            System.out.println("Your total order price is " + Prices.get(4));
+            TotalPrice[1] = Prices.get(4);
+        }
+        if (B.equalsIgnoreCase("Coke")) {
+            System.out.println(B + " " + "ordered!");
+            System.out.println("Your total order price is " + Prices.get(5));
+            TotalPrice[1] = Prices.get(5);
+        }
+        if (B.equalsIgnoreCase("Fanta")) {
+            System.out.println(B + " " + "ordered!");
+            System.out.println("Your total order price is " + Prices.get(6));
+            TotalPrice[1] = Prices.get(6);
+        }
+
+            int R = TotalPrice[0] + TotalPrice[1];
+            Thread.sleep(1000);
+            System.out.println("Thank you for your order, how would you like to pay?");
+            System.out.println("Cash or Card");
+            String Payment = user.nextLine();
+            if (Payment.equalsIgnoreCase("Card")) {
+            System.out.println("Card confirmed your total today is " + R);
+            } else {
+            System.out.println("Cash confirmed your total today is " + R);
+             }
+
+        FileWriter Receipt = new FileWriter("Receipt");
+            Receipt.write("Essos's Pizza Parlour Receipt " + "Ordered: " + A + " " + B);
+            Receipt.write("Order Total: " + R);
+            Receipt.write("Transaction authorised, payed by " + Payment);
+            Receipt.close();
+            Thread.sleep(1000);
+            System.out.println("Okay folks your payment has gone through, here is your receipt");
+            System.out.println(Receipt);
+            Thread.sleep(1000);
+            System.out.println("Okay folks here is your food, enjoy Essos's Pizza Parlour Pizza, we hope to see you soon");
+            Thread.sleep(1000);
+            }
+        }
+
